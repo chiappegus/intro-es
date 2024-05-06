@@ -11,6 +11,10 @@ async function main() {
   const alice = algorand.account.random()
   const bob = algorand.account.random();
 
+
+
+ 
+ 
   console.log("Alice's Address:", alice.addr);
   console.log("bob's Address:", bob.addr);
 
@@ -48,12 +52,22 @@ async function main() {
   const result = await algorand.send.assetCreate({
     sender: alice.addr,
     total: 100n,
-
-
-  })
+    })
 
   assetId = BigInt(result.confirmation.assetIndex!)
   console.log('Numero del asset creado ', assetId)
+
+  console.log("Balance Alice asset:", await algorand.account.getAssetInformation(alice.addr, assetId));
+
+
+
+  // const result = await algorand.send.assetCreate({
+  //   sender: alice.addr,
+  //   total: 100n,
+  //   })
+
+  // assetId = BigInt(result.confirmation.assetIndex!)
+  // console.log('Numero del asset creado ', assetId)
 
   console.log("Balance Alice asset:", await algorand.account.getAssetInformation(alice.addr, assetId));
 
@@ -217,7 +231,7 @@ async function main() {
 
     sender: dispenser.addr,
     receiver: alice.addr,
-    amount: algokit.algos(6.002),
+    amount: algokit.algos(8.002),
   }
   )
 
